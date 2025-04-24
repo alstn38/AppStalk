@@ -14,9 +14,22 @@
 		F12D0D592DBA0E4F0019C53B /* AppStalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F12D11482DBA303C0019C53B /* Exceptions for "AppStalk" folder in "AppStalk" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resource/Info.plist,
+			);
+			target = F12D0D582DBA0E4F0019C53B /* AppStalk */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F12D0D5B2DBA0E4F0019C53B /* AppStalk */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F12D11482DBA303C0019C53B /* Exceptions for "AppStalk" folder in "AppStalk" target */,
+			);
 			path = AppStalk;
 			sourceTree = "<group>";
 		};
@@ -136,6 +149,8 @@
 /* Begin XCBuildConfiguration section */
 		F12D0D622DBA0E510019C53B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F12D0D5B2DBA0E4F0019C53B /* AppStalk */;
+			baseConfigurationReferenceRelativePath = Resource/APIKey.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -200,6 +215,8 @@
 		};
 		F12D0D632DBA0E510019C53B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F12D0D5B2DBA0E4F0019C53B /* AppStalk */;
+			baseConfigurationReferenceRelativePath = Resource/APIKey.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -265,6 +282,7 @@
 				DEVELOPMENT_TEAM = 5YM44C4YT8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppStalk/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -298,6 +316,7 @@
 				DEVELOPMENT_TEAM = 5YM44C4YT8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppStalk/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
