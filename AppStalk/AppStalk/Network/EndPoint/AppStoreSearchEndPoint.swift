@@ -9,6 +9,7 @@ import Foundation
 
 enum AppStoreSearchEndPoint: Router {
     case search(term: String, offset: Int = 1)
+    case lookup(ids: [Int])
 }
 
 extension AppStoreSearchEndPoint {
@@ -22,6 +23,8 @@ extension AppStoreSearchEndPoint {
         switch self {
         case .search:
             return "/search"
+        case .lookup:
+            return "/lookup"
         }
     }
 
@@ -41,6 +44,10 @@ extension AppStoreSearchEndPoint {
                 "limit": 20,
                 "lang": "ko_kr",
                 "offset": offset
+            ]
+        case let .lookup(ids):
+            return [
+                "id": ids.map { String($0) }.joined(separator: ",")
             ]
         }
     }
