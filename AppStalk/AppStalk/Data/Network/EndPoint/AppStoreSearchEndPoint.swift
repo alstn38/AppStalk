@@ -8,7 +8,7 @@
 import Foundation
 
 enum AppStoreSearchEndPoint: Router {
-    case search(term: String, offset: Int = 1)
+    case search(term: String, offset: Int)
     case lookup(ids: [Int])
 }
 
