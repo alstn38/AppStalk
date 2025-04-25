@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F12D0D7B2DBA103C0019C53B /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = F12D0D7A2DBA103C0019C53B /* ComposableArchitecture */; };
+		F12D11DE2DBB454B0019C53B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F12D11DD2DBB454B0019C53B /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F12D11DE2DBB454B0019C53B /* RealmSwift in Frameworks */,
 				F12D0D7B2DBA103C0019C53B /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +86,7 @@
 			name = AppStalk;
 			packageProductDependencies = (
 				F12D0D7A2DBA103C0019C53B /* ComposableArchitecture */,
+				F12D11DD2DBB454B0019C53B /* RealmSwift */,
 			);
 			productName = AppStalk;
 			productReference = F12D0D592DBA0E4F0019C53B /* AppStalk.app */;
@@ -115,6 +118,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				F12D0D792DBA103C0019C53B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				F12D11DC2DBB454B0019C53B /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F12D0D5A2DBA0E4F0019C53B /* Products */;
@@ -372,6 +376,14 @@
 				minimumVersion = 1.19.1;
 			};
 		};
+		F12D11DC2DBB454B0019C53B /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 20.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -379,6 +391,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F12D0D792DBA103C0019C53B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		F12D11DD2DBB454B0019C53B /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F12D11DC2DBB454B0019C53B /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
