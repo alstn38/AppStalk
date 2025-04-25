@@ -14,7 +14,7 @@ struct SearchResponseDTO: Decodable {
     let results: [AppInfoDTO]
 }
 
-struct AppInfoDTO: Decodable, Identifiable {
+struct AppInfoDTO: Decodable {
     /// 앱 ID (Identifiable 준수용)
     let id: Int
     /// 앱 이름
@@ -47,9 +47,10 @@ struct AppInfoDTO: Decodable, Identifiable {
     let minimumOsVersion: String
     /// 출시 날짜
     let releaseDate: String
+    /// 릴리즈 노트 설명
+    let releaseNotes: String?
     /// 앱 개발사 URL
     let sellerUrl: String?
-    
     /// 앱 가격 문자열
     let formattedPrice: String
     
@@ -59,6 +60,6 @@ struct AppInfoDTO: Decodable, Identifiable {
         case trackName, description, artworkUrl512, screenshotUrls, artistName
         case price, version, primaryGenreName, bundleId, trackViewUrl
         case fileSizeBytes, averageUserRating, userRatingCount
-        case minimumOsVersion, releaseDate, sellerUrl, formattedPrice
+        case minimumOsVersion, releaseDate, releaseNotes, sellerUrl, formattedPrice
     }
 }
