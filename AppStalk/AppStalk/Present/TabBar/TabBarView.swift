@@ -22,7 +22,6 @@ struct TabBarView: View {
                     Image(systemName: "gamecontroller")
                     Text("게임")
                 }
-                .tabItem { Image(systemName: "gamecontroller") }
             
             UserAppView()
                 .tabItem {
