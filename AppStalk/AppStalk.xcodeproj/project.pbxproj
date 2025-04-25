@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F12D0D7B2DBA103C0019C53B /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = F12D0D7A2DBA103C0019C53B /* ComposableArchitecture */; };
-		F12D11DE2DBB454B0019C53B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F12D11DD2DBB454B0019C53B /* RealmSwift */; };
+		F12D17D32DBB9E0E0019C53B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F12D17D22DBB9E0E0019C53B /* RealmSwift */; };
+		F12D191B2DBBB1910019C53B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F12D191A2DBBB1910019C53B /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,8 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F12D11DE2DBB454B0019C53B /* RealmSwift in Frameworks */,
-				F12D0D7B2DBA103C0019C53B /* ComposableArchitecture in Frameworks */,
+				F12D191B2DBBB1910019C53B /* Kingfisher in Frameworks */,
+				F12D17D32DBB9E0E0019C53B /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,8 +85,8 @@
 			);
 			name = AppStalk;
 			packageProductDependencies = (
-				F12D0D7A2DBA103C0019C53B /* ComposableArchitecture */,
-				F12D11DD2DBB454B0019C53B /* RealmSwift */,
+				F12D17D22DBB9E0E0019C53B /* RealmSwift */,
+				F12D191A2DBBB1910019C53B /* Kingfisher */,
 			);
 			productName = AppStalk;
 			productReference = F12D0D592DBA0E4F0019C53B /* AppStalk.app */;
@@ -117,8 +117,8 @@
 			mainGroup = F12D0D502DBA0E4F0019C53B;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				F12D0D792DBA103C0019C53B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
-				F12D11DC2DBB454B0019C53B /* XCRemoteSwiftPackageReference "realm-swift" */,
+				F12D17D12DBB9E0E0019C53B /* XCRemoteSwiftPackageReference "realm-swift" */,
+				F12D19192DBBB1910019C53B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F12D0D5A2DBA0E4F0019C53B /* Products */;
@@ -368,34 +368,34 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F12D0D792DBA103C0019C53B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.19.1;
-			};
-		};
-		F12D11DC2DBB454B0019C53B /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		F12D17D12DBB9E0E0019C53B /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
 				kind = exactVersion;
-				version = 20.0.2;
+				version = 20.0.1;
+			};
+		};
+		F12D19192DBBB1910019C53B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.3.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F12D0D7A2DBA103C0019C53B /* ComposableArchitecture */ = {
+		F12D17D22DBB9E0E0019C53B /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F12D0D792DBA103C0019C53B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
-		};
-		F12D11DD2DBB454B0019C53B /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F12D11DC2DBB454B0019C53B /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = F12D17D12DBB9E0E0019C53B /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		F12D191A2DBBB1910019C53B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F12D19192DBBB1910019C53B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
