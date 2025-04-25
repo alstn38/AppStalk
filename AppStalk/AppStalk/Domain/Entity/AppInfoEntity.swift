@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AppInfoEntity {
+struct AppInfoEntity: Hashable {
     /// 앱 ID (Identifiable 준수용)
     let id: Int
     /// 앱 이름
