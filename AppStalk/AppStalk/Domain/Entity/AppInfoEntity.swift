@@ -30,12 +30,14 @@ struct AppInfoEntity: Hashable {
     let bundleId: String
     /// 최소 OS 버전
     let minimumOsVersion: String
-    /// 출시 날짜
-    let releaseDate: String
+    /// 최근 릴리즈 날짜
+    let currentVersionReleaseDate: String
     /// 릴리즈 노트 설명
     let releaseNotes: String?
     /// 앱 가격 문자열
     let formattedPrice: String
+    /// 앱 최소 나이
+    let contentAdvisoryRating: String
     
     var downloadState: DownloadState
     var remainingSeconds: Double
