@@ -52,9 +52,10 @@ final class DefaultAppSearchRepository: AppSearchRepository {
                     primaryGenreName: appDTO.primaryGenreName,
                     bundleId: appDTO.bundleId,
                     minimumOsVersion: appDTO.minimumOsVersion,
-                    releaseDate: appDTO.releaseDate,
+                    currentVersionReleaseDate: appDTO.currentVersionReleaseDate,
                     releaseNotes: appDTO.releaseNotes,
                     formattedPrice: appDTO.formattedPrice,
+                    contentAdvisoryRating: appDTO.contentAdvisoryRating,
                     downloadState: localInfo?.downloadState ?? .ready,
                     remainingSeconds: localInfo?.remainingSeconds ?? 30.0
                 )
