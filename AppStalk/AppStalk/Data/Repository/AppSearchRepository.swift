@@ -10,6 +10,12 @@ import Foundation
 protocol AppSearchRepository {
     /// 앱스토어 검색 결과를 불러오고 로컬 상태와 병합하여 Entity 목록 반환
     func fetchSearchResult(term: String, offset: Int) async throws -> [AppInfoEntity]
+    
+    /// 다운로드된 앱 Entity 목록 반환
+    func fetchMyAppResult() async throws -> [AppDownloadInfoEntity]
+    
+    /// 다운로드된 앱 삭제
+    func deleteMyApp(appId: Int) async throws
 }
 
 final class DefaultAppSearchRepository: AppSearchRepository {
@@ -63,5 +69,13 @@ final class DefaultAppSearchRepository: AppSearchRepository {
         }
         
         return resultEntities
+    }
+    
+    func fetchMyAppResult() async throws -> [AppDownloadInfoEntity] {
+        return try await localStorageService.fetchCompletedDownloadInfos()
+    }
+    
+    func deleteMyApp(appId: Int) async throws {
+        try await localStorageService.deleteDownloadInfo(appId: appId)
     }
 }
