@@ -8,20 +8,29 @@
 import SwiftUI
 
 struct SearchView: View {
+    
     @StateObject private var viewModel = AppSearchViewModel()
-
+    
     var body: some View {
         NavigationStack {
             ScrollView {
+                if viewModel.output.isLoading {
+                    ProgressView()
+                }
+                
+                if viewModel.output.isEmptyResult {
+                    emptyResultView()
+                }
+                
                 LazyVStack(spacing: 10) {
                     ForEach(viewModel.output.searchResults, id: \.id) { app in
                         NavigationLink(value: app) {
                             SearchAppRow(app: app)
                         }
-                    }
-                    if viewModel.output.isLoadingMore {
-                        ProgressView()
-                            .frame(maxWidth: .infinity, alignment: .center)
+                        .id(app.id)
+                        .onAppear {
+                            viewModel.input.currentShowItem.send(app)
+                        }
                     }
                 }
             }
@@ -31,11 +40,22 @@ struct SearchView: View {
                 viewModel.input.searchSubmitted.send(())
             }
             .refreshable {
-                // TODO: 다시 새로고침
+                viewModel.input.searchSubmitted.send(())
             }
             .navigationDestination(for: AppInfoEntity.self) { app in
-                // TODO: DetailView 이동
+                AppDetailView(app: app)
             }
+        }
+    }
+    
+    private func emptyResultView() -> some View {
+        VStack {
+            Spacer()
+            Text("검색 결과가 없습니다.")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .padding()
+            Spacer()
         }
     }
 }
