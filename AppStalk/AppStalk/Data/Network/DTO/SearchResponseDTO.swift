@@ -53,6 +53,10 @@ struct AppInfoDTO: Decodable {
     let sellerUrl: String?
     /// 앱 가격 문자열
     let formattedPrice: String
+    /// 앱 최소 나이
+    let contentAdvisoryRating: String
+    /// 최근 업데이트 날짜
+    let currentVersionReleaseDate: String
     
     /// CodingKeys 정의
     enum CodingKeys: String, CodingKey {
@@ -60,6 +64,6 @@ struct AppInfoDTO: Decodable {
         case trackName, description, artworkUrl512, screenshotUrls, artistName
         case price, version, primaryGenreName, bundleId, trackViewUrl
         case fileSizeBytes, averageUserRating, userRatingCount
-        case minimumOsVersion, releaseDate, releaseNotes, sellerUrl, formattedPrice
+        case minimumOsVersion, releaseDate, releaseNotes, sellerUrl, formattedPrice, contentAdvisoryRating, currentVersionReleaseDate
     }
 }
