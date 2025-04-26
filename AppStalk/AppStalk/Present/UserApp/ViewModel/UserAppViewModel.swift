@@ -60,6 +60,16 @@ final class UserAppViewModel: ViewModelType {
                 }
             }
             .store(in: &cancellables)
+            
+        // 다운로드 상태 변화 구독 - 앱이 완료 상태로 변경되면 목록에 추가
+        appSearchRepository.downloadStateChanged
+            .receive(on: RunLoop.main)
+            .sink { [weak self] appId in
+                Task {
+                    await self?.checkAndAddCompletedApp(appId: appId)
+                }
+            }
+            .store(in: &cancellables)
     }
 
     private func fetchMyApps() async {
@@ -91,6 +101,24 @@ final class UserAppViewModel: ViewModelType {
             }
         } catch {
             print("앱 삭제 실패: \(error)")
+        }
+    }
+    
+    // 다운로드가 완료된 앱인지 확인하고 목록에 추가
+    private func checkAndAddCompletedApp(appId: Int) async {
+        do {
+            if let appInfo = try await appSearchRepository.fetchDownloadInfo(appId: appId),
+               appInfo.downloadState == .completed,
+               !self.allApps.contains(where: { $0.appId == appId }) {
+                
+                // 완료된 앱이 목록에 없으면 추가
+                await MainActor.run {
+                    self.allApps.append(appInfo)
+                    self.filterApps(with: self.currentQuery)
+                }
+            }
+        } catch {
+            print("앱 정보 확인 실패: \(error)")
         }
     }
 }
