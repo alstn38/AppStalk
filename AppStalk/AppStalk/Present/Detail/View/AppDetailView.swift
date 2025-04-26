@@ -12,18 +12,25 @@ struct AppDetailView: View {
     
     let app: AppInfoEntity
     @StateObject private var viewModel = AppDetailViewModel()
+    @State private var currentApp: AppInfoEntity
+    
+    init(app: AppInfoEntity) {
+        self.app = app
+        // 초기 앱 상태 설정
+        self._currentApp = State(initialValue: app)
+    }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                AppHeaderView(app: app)
+                AppHeaderView(app: currentApp)
 
-                AppInfoScrollView(app: app)
+                AppInfoScrollView(app: currentApp)
 
-                UpdateNoteView(app: app)
+                UpdateNoteView(app: currentApp)
 
                 ScreenshotPreviewView(
-                    screenshots: app.screenshotUrls,
+                    screenshots: currentApp.screenshotUrls,
                     onTap: { index in
                         viewModel.input.screenshotTapped.send(index)
                     }
@@ -31,11 +38,20 @@ struct AppDetailView: View {
             }
             .padding()
         }
+        .onAppear {
+            viewModel.input.onAppear.send(app)
+        }
         .fullScreenCover(isPresented: $viewModel.output.isShowingScreenshotViewer) {
             ScreenshotFullScreenView(
-                app: app,
+                app: currentApp,
                 initialIndex: viewModel.output.selectedScreenshotIndex ?? 0
             )
+        }
+        // 앱 상태 변화 감지
+        .onReceive(viewModel.$output) { output in
+            if let updatedApp = output.app {
+                currentApp = updatedApp
+            }
         }
     }
 }
