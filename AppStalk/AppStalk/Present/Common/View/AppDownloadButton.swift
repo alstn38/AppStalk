@@ -112,6 +112,11 @@ struct AppDownloadButton: View {
             withAnimation(.linear(duration: 0)) {
                 animatedProgress = app.progress
             }
+        } else if app.downloadState == .completed {
+            // 완료 상태에서는 진행도 100%
+            withAnimation(.linear(duration: 0.3)) {
+                animatedProgress = 1.0
+            }
         }
     }
 }

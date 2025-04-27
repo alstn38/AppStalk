@@ -26,6 +26,12 @@ final class AppDownloadButtonViewModel: ObservableObject {
         
         switch app.downloadState {
         case .ready, .reinstall:
+            // 네트워크 연결 확인
+            if !NetworkMonitor.shared.isConnected {
+                print("네트워크 연결이 없어 다운로드를 시작할 수 없습니다.")
+                return
+            }
+            
             let downloadInfoDTO = AppDownloadInfoDTO()
             downloadInfoDTO.appId = app.id
             downloadInfoDTO.appName = app.trackName
@@ -49,13 +55,20 @@ final class AppDownloadButtonViewModel: ObservableObject {
             }
             
         case .paused:
+            // 네트워크 연결 확인
+            if !NetworkMonitor.shared.isConnected {
+                print("네트워크 연결이 없어 다운로드를 재개할 수 없습니다.")
+                return
+            }
+            
             // 다운로드 재개
             Task {
                 await appSearchRepository.resumeDownload(appId: app.id)
             }
             
         case .completed:
-            break
+            // 열기 액션 - 앱 실행 (시뮬레이션만 함)
+            print("앱 실행: \(app.trackName)")
         }
     }
 }
