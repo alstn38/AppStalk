@@ -103,6 +103,7 @@ final class DefaultAppSearchRepository: AppSearchRepository {
     
     func deleteMyApp(appId: Int) async throws {
         try await localStorageService.deleteDownloadInfo(appId: appId)
+        downloadManager.appStateChanged.send(appId)
     }
     
     func startDownload(app: AppInfoDTO) async {
