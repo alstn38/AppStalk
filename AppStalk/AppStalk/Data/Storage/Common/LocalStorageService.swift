@@ -86,9 +86,12 @@ final class DefaultLocalStorageService: LocalStorageService {
         guard let object = realm.object(ofType: AppDownloadInfoDTO.self, forPrimaryKey: appId) else {
             return
         }
-        
         try realm.write {
-            realm.delete(object)
+            object.downloadState = DownloadState.reinstall.rawValue
+            object.lastUpdated = Date()
+            object.remainingSeconds = 30.0
+            object.pausedTime = nil
+            object.currentBackgroundDate = nil
         }
     }
     
