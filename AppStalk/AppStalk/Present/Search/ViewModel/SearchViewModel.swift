@@ -19,8 +19,9 @@ final class AppSearchViewModel: ViewModelType {
     struct Output {
         var searchResults: [AppInfoEntity] = []
         var isLoading: Bool = false
+        var hasSearched: Bool = false
         var isEmptyResult: Bool {
-            !isLoading && searchResults.isEmpty
+            hasSearched && !isLoading && searchResults.isEmpty
         }
     }
 
@@ -70,6 +71,7 @@ final class AppSearchViewModel: ViewModelType {
         
         // output.isLoading이 실행되어야지 넘어감.
         await MainActor.run {
+            output.hasSearched = true
             output.isLoading = true
         }
         
