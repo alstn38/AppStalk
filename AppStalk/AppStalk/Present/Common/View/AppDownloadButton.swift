@@ -34,14 +34,19 @@ struct AppDownloadButton: View {
     @ViewBuilder
     private var buttonContent: some View {
         switch app.downloadState {
-        case .ready, .reinstall:
-            Text(app.downloadState == .ready ? "받기" : "다시받기")
+        case .ready:
+            Text("받기")
                 .font(.subheadline.bold())
                 .padding(.horizontal, 14)
                 .padding(.vertical, 6)
                 .foregroundStyle(.blue)
                 .background(Color(.systemGray6))
                 .cornerRadius(16)
+            
+        case .reinstall:
+            Image(systemName: "icloud.and.arrow.down")
+                .font(.system(size: 20, weight: .medium))
+                .foregroundStyle(.blue)
 
         case .downloading:
             ZStack {
@@ -61,21 +66,17 @@ struct AppDownloadButton: View {
             }
 
         case .paused:
-            ZStack {
-                Circle()
-                    .stroke(lineWidth: 2)
-                    .foregroundColor(.gray.opacity(0.4))
-                    .frame(width: 30, height: 30)
-
-                Circle()
-                    .trim(from: 0, to: CGFloat(app.progress))
-                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 2, lineCap: .round))
-                    .rotationEffect(.degrees(-90))
-                    .frame(width: 30, height: 30)
-
-                Image(systemName: "arrow.clockwise")
-                    .font(.system(size: 10, weight: .bold))
+            HStack(spacing: 4) {
+                Image(systemName: "icloud.and.arrow.down")
+                    .font(.system(size: 16, weight: .medium))
+                Text("재개")
+                    .font(.subheadline.bold())
             }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 6)
+            .foregroundStyle(.blue)
+            .background(Color(.systemGray6))
+            .cornerRadius(16)
 
         case .completed:
             Text("열기")
