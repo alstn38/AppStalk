@@ -16,6 +16,7 @@ final class DownloadTask {
     
     var onStateChanged: ((Int, DownloadState, Double) -> Void)?
     private var dispatchTimer: DispatchSourceTimer?
+    private var lastUpdatedTime: Date?
     
     init(appId: Int, state: DownloadState, remainingSeconds: Double) {
         self.appId = appId
@@ -34,10 +35,10 @@ final class DownloadTask {
         print("DownloadTask.start() called for app: \(appId)")
         guard state != .completed else { return }
         
-        print("Task already downloading or completed, ignoring start() call")
         // 상태 변경
         print("Changing state to downloading")
         state = .downloading
+        lastUpdatedTime = Date()
         
         // 타이머 시작
         print("Starting timer")
@@ -74,20 +75,18 @@ final class DownloadTask {
         let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
         timer.schedule(deadline: .now(), repeating: .milliseconds(100))
         timer.setEventHandler { [weak self] in
-            print("Timer fired")
             guard let self = self, self.state == .downloading else {
-                print("Guard failed in timer")
                 return
             }
             
             self.remainingSeconds -= 0.1
             self.remainingSeconds = (self.remainingSeconds * 10).rounded() / 10
-            print("Timer tick: \(self.remainingSeconds)")
-
+            
             if self.remainingSeconds <= 0 {
                 print("Time reached zero, completing download")
                 self.complete()
             } else if self.remainingSeconds.truncatingRemainder(dividingBy: 1.0) < 0.1 {
+                // 1초마다 상태 업데이트
                 self.onStateChanged?(self.appId, self.state, self.remainingSeconds)
             }
         }
