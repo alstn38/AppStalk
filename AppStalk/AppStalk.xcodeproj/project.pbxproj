@@ -9,7 +9,22 @@
 /* Begin PBXBuildFile section */
 		F12D17D32DBB9E0E0019C53B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F12D17D22DBB9E0E0019C53B /* RealmSwift */; };
 		F12D191B2DBBB1910019C53B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F12D191A2DBBB1910019C53B /* Kingfisher */; };
+		F12D19CA2DBDF5930019C53B /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = F12D17D22DBB9E0E0019C53B /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F12D19CB2DBDF5930019C53B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F12D19CA2DBDF5930019C53B /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F12D0D592DBA0E4F0019C53B /* AppStalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +90,7 @@
 				F12D0D552DBA0E4F0019C53B /* Sources */,
 				F12D0D562DBA0E4F0019C53B /* Frameworks */,
 				F12D0D572DBA0E4F0019C53B /* Resources */,
+				F12D19CB2DBDF5930019C53B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
