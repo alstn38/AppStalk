@@ -20,7 +20,7 @@ struct UserAppView: View {
                 .onDelete(perform: delete)
             }
             .listStyle(.plain)
-            .navigationTitle("내 앱")
+            .navigationTitle("앱")
             .searchable(text: $searchText)
             .onChange(of: searchText) { oldValue, newValue in
                 viewModel.input.queryChanged.send(newValue)
