@@ -2,9 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 	<key>APPSTORE_BASE_URL</key>
 	<string>$(APPSTORE_BASE_URL)</string>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UILaunchScreen</key>
+		<dict>
+			<key>LaunchScreen</key>
+			<string>LaunchScreen</string>
+		</dict>
+	</dict>
 </dict>
 </plist>
