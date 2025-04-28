@@ -54,7 +54,7 @@ final class AppSearchViewModel: ViewModelType {
             }
             .store(in: &cancellables)
         
-        // 다운로드 상태 변화 구독
+        /// 다운로드 상태 변화 구독
         appSearchRepository.downloadStateChanged
             .receive(on: RunLoop.main)
             .sink { [weak self] appId in
@@ -91,7 +91,7 @@ final class AppSearchViewModel: ViewModelType {
                 if isRefresh || currentPage == 1 {
                     output.searchResults = results
                 } else {
-                    // 중복 아이템을 방지하고 새 결과만 추가
+                    /// 중복 아이템을 방지하고 새 결과만 추가
                     let newItems = results.filter { newItem in
                         !output.searchResults.contains { $0.id == newItem.id }
                     }

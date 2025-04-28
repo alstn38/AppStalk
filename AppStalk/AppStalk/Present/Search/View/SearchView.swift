@@ -22,7 +22,7 @@ struct SearchView: View {
                     emptyResultView()
                 }
                 
-                VStack(spacing: 10) {
+                LazyVStack(spacing: 10) {
                     ForEach(viewModel.output.searchResults, id: \.id) { app in
                         NavigationLink(value: app) {
                             SearchAppRow(app: app)
