@@ -116,7 +116,13 @@ final class DownloadTask {
         print("State changed to: \(state.rawValue)")
         
         // 콜백 호출 (완료 상태 알림)
-        onStateChanged?(self.appId, self.state, self.remainingSeconds)
+        if Thread.isMainThread {
+            onStateChanged?(self.appId, self.state, self.remainingSeconds)
+        } else {
+            DispatchQueue.main.async {
+                self.onStateChanged?(self.appId, self.state, self.remainingSeconds)
+            }
+        }
         print("Callback should have been called")
     }
     
