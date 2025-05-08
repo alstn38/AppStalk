@@ -12,6 +12,7 @@ import SwiftUI
 /// 앱 다운로드 관리를 담당하는 매니저 클래스
 final class DownloadManager {
     
+    private let taskLock = NSLock()
     static let shared = DownloadManager()
     
     private var downloadTasks: [Int: DownloadTask] = [:]
@@ -69,6 +70,9 @@ final class DownloadManager {
     
     /// 모든 다운로드 항목에 대해 백그라운드 진입 Date값 설정하는 메서드
     @objc private func applicationDidEnterBackground() {
+        
+        taskLock.lock()
+        defer { taskLock.unlock() }
         let currentDate = Date()
         
         for (appId, _) in downloadTasks {
@@ -99,6 +103,9 @@ final class DownloadManager {
     
     /// 앱 종료 시점 (다운로드 중인 id 저장) 메서드
     @objc private func applicationWillTerminate() {
+        
+        taskLock.lock()
+        defer { taskLock.unlock() }
         let currentDate = Date()
         
         /// 앱 종료 시간을  저장
@@ -124,6 +131,9 @@ final class DownloadManager {
     
     /// 네트워크 연결 끊김 시 모든 다운로드 중인 앱 일시정지
     private func pauseAllDownloadsForNetworkLoss() async {
+        
+        taskLock.lock()
+        defer { taskLock.unlock() }
         for (appId, task) in downloadTasks {
             if task.state == .downloading {
                 task.pause()
@@ -141,22 +151,21 @@ final class DownloadManager {
             }
         }
     }
-    
     /// 앱 다운로드 시작
     func startDownload(app: AppInfoDTO) async {
         let dto = AppDownloadInfoDTO(dto: app)
         
+        taskLock.lock()
+        defer { taskLock.unlock() }
         /// 로컬 저장소에 다운로드 정보 저장
         do {
             try await localStorageService.saveDownloadInfo(dto: dto)
-            
             /// 새 다운로드 태스크 생성 및 시작
             let task = createDownloadTask(
                 appId: app.id,
                 state: .downloading,
                 remainingSeconds: 30.0
             )
-            
             /// 해당 task 시작과 변경 알림
             task.start()
             appStateChanged.send(app.id)
@@ -167,6 +176,8 @@ final class DownloadManager {
     
     /// 다운로드 상태 시작/재개
     func resumeDownload(appId: Int) async {
+        taskLock.lock()
+        defer { taskLock.unlock() }
         do {
             /// 다운로드 정보 가져오기
             guard let info = try await localStorageService.fetchDownloadInfo(appId: appId) else { return }
@@ -210,6 +221,9 @@ final class DownloadManager {
     
     /// 다운로드 일시정지
     func pauseDownload(appId: Int) async {
+        
+        taskLock.lock()
+        defer { taskLock.unlock() }
         guard let task = downloadTasks[appId] else { return }
         
         /// 타이머 일시 정지
@@ -289,6 +303,8 @@ final class DownloadManager {
     /// 백그라운드에서 경과한 시간 처리
     private func processBackgroundTime() async {
         
+        taskLock.lock()
+        defer { taskLock.unlock() }
         /// 현재 다운로드 중인 앱 목록 가져오기
         let downloadingApps = await fetchDownloadingApps()
         
@@ -351,6 +367,9 @@ final class DownloadManager {
     
     /// 진행 중이던 다운로드 작업 복구 메서드 (앱 재진입시)
     private func restoreDownloadTasks() async {
+        
+        taskLock.lock()
+        defer { taskLock.unlock() }
         let defaults = UserDefaults.standard
         
         /// 종료 시간과 활성 다운로드 앱 ID가 있는지 확인
